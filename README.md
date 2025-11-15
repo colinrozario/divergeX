@@ -1,6 +1,8 @@
 # DivergeX - Neurodivergent Assistive Platform
 
-An AI-powered platform designed to support neurodivergent individuals with communication, learning, and planning tools.
+An AI-powered platform designed to support neurodivergent individuals with communication, learning, and planning tools. Built with modern web technologies and a focus on accessibility-first design.
+
+🌐 **Live Demo**: [https://diverge-x-client.vercel.app](https://diverge-x-client.vercel.app)
 
 > **🚀 New to DivergeX?** Start with [START_HERE.md](START_HERE.md) for a 5-minute setup guide!
 > 
@@ -34,20 +36,24 @@ An AI-powered platform designed to support neurodivergent individuals with commu
 ## Tech Stack
 
 **Frontend:**
-- React 19
-- Vite
-- TailwindCSS
-- Zustand (State Management)
-- React Router
-- Axios
+- React 19 with Vite
+- TailwindCSS (Modern utility-first styling)
+- Zustand (Lightweight state management)
+- React Router v6
+- Axios (HTTP client)
 
 **Backend:**
-- Node.js
-- Express
-- Drizzle ORM
-- Neon Database (PostgreSQL)
-- Google Gemini AI
+- Node.js with Express 5
+- Drizzle ORM (Type-safe database queries)
+- Neon Database (Serverless PostgreSQL)
+- Google Gemini AI (Advanced language processing)
 - JWT Authentication
+- Helmet & CORS (Security)
+
+**Deployment:**
+- Frontend: Vercel
+- Backend: Vercel Serverless Functions
+- Database: Neon (Serverless PostgreSQL)
 
 ## Setup Instructions
 
@@ -97,17 +103,26 @@ Server will run on http://localhost:3000
 cd client
 ```
 
-2. Install dependencies (already done):
+2. Install dependencies:
 ```bash
 npm install
 ```
 
 3. Configure environment variables:
-Edit `client/.env`:
+
+For **production** (using deployed server), edit `client/.env`:
+```env
+VITE_API_URL=https://diverge-x-server.vercel.app/api
+VITE_APP_NAME=DivergeX
+```
+
+For **local development**, create `client/.env.local`:
 ```env
 VITE_API_URL=http://localhost:3000/api
 VITE_APP_NAME=DivergeX
 ```
+
+> **Note**: `.env.local` takes precedence over `.env` and is git-ignored for local development.
 
 4. Start the development server:
 ```bash
@@ -121,8 +136,20 @@ Frontend will run on http://localhost:5173
 1. **Register**: Create a new account at `/register`
 2. **Login**: Access your account at `/login`
 3. **Dashboard**: View all available tools
-4. **Customize**: Adjust accessibility settings to your preferences
-5. **Explore**: Try communication, learning, and planning tools
+4. **Customize**: Adjust accessibility settings in `/settings` to your preferences
+5. **Explore Tools**:
+   - **Communication**: Analyze tone, format messages, practice conversations
+   - **Learning**: Simplify complex text, generate visual summaries
+   - **Planning**: Manage tasks with energy-level awareness
+
+## Design Philosophy
+
+DivergeX features a modern, clean design inspired by contemporary fintech applications:
+- **Soft, rounded corners** (rounded-3xl) for a friendly, approachable feel
+- **Neutral color palette** with subtle accents for reduced visual stress
+- **Generous spacing** and clear typography for improved readability
+- **Minimal animations** with reduced motion support
+- **High contrast options** for better visibility
 
 ## API Endpoints
 
@@ -156,48 +183,104 @@ Frontend will run on http://localhost:5173
 
 ```
 divergex/
-├── client/                 # Frontend React app
+├── client/                          # Frontend React app
 │   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── pages/         # Page components
-│   │   ├── store/         # Zustand stores
-│   │   ├── services/      # API services
-│   │   └── App.jsx        # Main app component
+│   │   ├── components/
+│   │   │   ├── communication/      # Communication tool components
+│   │   │   ├── learning/           # Learning tool components
+│   │   │   ├── planning/           # Planning tool components
+│   │   │   ├── layout/             # Header, navigation, etc.
+│   │   │   └── shared/             # Reusable UI components
+│   │   ├── pages/                  # Page components
+│   │   ├── store/                  # Zustand state stores
+│   │   ├── services/               # API service layer
+│   │   ├── App.jsx                 # Main app component
+│   │   └── index.css               # Global styles
+│   ├── .env                        # Production environment variables
+│   ├── .env.local                  # Local development variables (git-ignored)
 │   └── package.json
-├── server/                # Backend API
+├── server/                          # Backend API
 │   ├── src/
-│   │   ├── db/           # Database schema
-│   │   ├── routes/       # API routes
-│   │   ├── services/     # AI services
-│   │   ├── middleware/   # Auth middleware
-│   │   └── server.js     # Express server
+│   │   ├── db/
+│   │   │   ├── schema.js           # Drizzle database schema
+│   │   │   └── index.js            # Database connection
+│   │   ├── routes/                 # API route handlers
+│   │   ├── services/
+│   │   │   └── ai.service.js       # Google Gemini AI integration
+│   │   ├── middleware/             # Auth & validation middleware
+│   │   └── server.js               # Express server setup
+│   ├── .env                        # Server environment variables
+│   ├── vercel.json                 # Vercel deployment config
 │   └── package.json
 └── README.md
 ```
 
 ## Security
 
-- Passwords hashed with bcrypt
-- JWT token authentication
-- Rate limiting on API endpoints
-- CORS protection
-- Helmet security headers
-- Input validation with Zod
+- **Password Security**: Bcrypt hashing with salt rounds
+- **Authentication**: JWT token-based auth with secure storage
+- **Rate Limiting**: Express rate limiter (100 requests per 15 minutes)
+- **CORS Protection**: Configured for localhost and production domains
+- **Security Headers**: Helmet middleware for HTTP security
+- **Input Validation**: Zod schema validation on all endpoints
+- **Environment Variables**: Sensitive data stored in .env files (git-ignored)
 
 ## Accessibility Compliance
 
-DivergeX follows WCAG 2.1 AA guidelines:
-- Semantic HTML
+DivergeX follows WCAG 2.1 AA guidelines and neurodiversity-focused design principles:
+
+**Visual Accessibility:**
+- High contrast mode option
+- Adjustable font sizes (80%-200%)
+- Dyslexia-friendly font options (OpenDyslexic)
+- Color contrast ratios meeting AA standards
+- Multiple theme options (Light, Dark, High Contrast)
+
+**Motor Accessibility:**
+- Full keyboard navigation support
+- Large, easy-to-click touch targets
+- Reduced motion option for animations
+- Focus indicators on all interactive elements
+
+**Cognitive Accessibility:**
+- Clear, simple language
+- Consistent navigation patterns
+- Visual hierarchy and spacing
+- Energy-aware task planning
+- Customizable reading levels
+
+**Screen Reader Support:**
+- Semantic HTML structure
 - ARIA labels and descriptions
-- Keyboard navigation
-- Focus management
-- Color contrast ratios
-- Screen reader support
-- Reduced motion support
+- Live regions for dynamic content
+- Skip navigation links
+
+## Development Tips
+
+**Running Locally:**
+1. Start the backend server: `cd server && npm run dev`
+2. Start the frontend: `cd client && npm run dev`
+3. Ensure `.env.local` is configured for local API connection
+
+**Common Issues:**
+- **CORS errors**: Make sure your local server is running and `.env.local` points to `http://localhost:3000/api`
+- **Database errors**: Run `npx drizzle-kit push` to sync schema changes
+- **Build errors**: Clear node_modules and reinstall dependencies
+
+**Deployment:**
+- Frontend and backend are deployed separately on Vercel
+- Environment variables must be configured in Vercel dashboard
+- CORS is configured to allow both localhost and production domains
 
 ## Contributing
 
 This is a neurodiversity-focused project. Contributions that improve accessibility and user experience are welcome.
+
+**Guidelines:**
+- Follow existing code style and patterns
+- Test accessibility features thoroughly
+- Consider neurodivergent user needs in all changes
+- Update documentation for new features
 
 ## License
 
@@ -206,3 +289,7 @@ ISC
 ## Support
 
 For issues or questions, please open an issue on the repository.
+
+## Acknowledgments
+
+Built with consideration for the neurodivergent community. Special thanks to all contributors and users who provide feedback to make DivergeX more accessible and useful.
