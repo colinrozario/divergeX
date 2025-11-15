@@ -4,28 +4,25 @@ An AI-powered platform designed to support neurodivergent individuals with commu
 
 🌐 **Live Demo**: [https://diverge-x-client.vercel.app](https://diverge-x-client.vercel.app)
 
-> **🚀 New to DivergeX?** Start with [START_HERE.md](START_HERE.md) for a 5-minute setup guide!
-> 
-> **📚 Need documentation?** Check [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) to find what you need.
 
 ## Features
 
-### 🗣️ Communication Tools
+###  Communication Tools
 - **Tone Analyzer**: Understand emotional tone and social context in messages
 - **Message Formatter**: Improve message clarity and appropriateness
 - **Conversation Simulator**: Practice social interactions in safe scenarios
 
-### 📚 Learning Assistance
+###  Learning Assistance
 - **Text Simplifier**: Adapt complex content to your reading level
 - **Visual Summaries**: Generate mind maps and structured outlines
 - **Key Points Extraction**: Identify main concepts quickly
 
-### 📅 Planning & Organization
+###  Planning & Organization
 - **Task Manager**: Organize tasks with energy-level awareness
 - **Timeline Builder**: Visual scheduling with reminders
 - **Executive Function Tools**: Support for working memory and task initiation
 
-### ♿ Accessibility Features
+###  Accessibility Features
 - WCAG 2.1 AA compliant
 - Multiple theme options (Light, Dark, High Contrast)
 - Dyslexia-friendly fonts
@@ -282,13 +279,7 @@ This is a neurodiversity-focused project. Contributions that improve accessibili
 - Consider neurodivergent user needs in all changes
 - Update documentation for new features
 
-## License
 
-ISC
-
-## Support
-
-For issues or questions, please open an issue on the repository.
 
 ## Acknowledgments
 
