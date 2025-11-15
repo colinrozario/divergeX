@@ -93,18 +93,19 @@ const Settings = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Breadcrumbs />
-      
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="text-4xl">⚙️</span>
-          <h1 className="text-4xl font-bold text-gray-900">Settings</h1>
+    <div className="min-h-screen bg-neutral-100">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 py-12">
+        <Breadcrumbs />
+        
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-5xl">⚙️</span>
+            <h1 className="text-5xl font-bold text-gray-900">Settings</h1>
+          </div>
+          <p className="text-xl text-gray-600">
+            Customize your experience to match your preferences
+          </p>
         </div>
-        <p className="text-lg text-gray-600">
-          Customize your experience to match your preferences
-        </p>
-      </div>
 
       <div className="space-y-6">
         <Card>
@@ -120,7 +121,7 @@ const Settings = () => {
                   <button
                     key={option.value}
                     onClick={() => setLocalSettings({ ...localSettings, theme: option.value })}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${
+                    className={`p-4 rounded-2xl border-2 text-left transition-all ${
                       localSettings.theme === option.value
                         ? 'border-blue-500 bg-blue-50 shadow-md'
                         : 'border-gray-200 hover:border-gray-300 bg-white'
@@ -145,7 +146,7 @@ const Settings = () => {
                   <button
                     key={option.value}
                     onClick={() => setLocalSettings({ ...localSettings, fontFamily: option.value })}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${
+                    className={`p-4 rounded-2xl border-2 text-left transition-all ${
                       localSettings.fontFamily === option.value
                         ? 'border-blue-500 bg-blue-50 shadow-md'
                         : 'border-gray-200 hover:border-gray-300 bg-white'
@@ -184,7 +185,7 @@ const Settings = () => {
                 />
                 <span className="text-xs text-gray-600 font-medium">200%</span>
               </div>
-              <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mt-3 p-4 bg-gray-50 rounded-2xl border-2 border-gray-200">
                 <p className="text-gray-700" style={{ fontSize: `${localSettings.fontSize}%` }}>
                   Preview: This is how your text will look
                 </p>
@@ -248,7 +249,7 @@ const Settings = () => {
         </Card>
 
         {hasChanges && (
-          <div className="sticky bottom-4 bg-white border-2 border-blue-500 rounded-xl p-4 shadow-lg animate-slide-in">
+          <div className="sticky bottom-4 bg-white border-2 border-blue-500 rounded-3xl p-6 shadow-xl animate-slide-in">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">💾</span>
@@ -258,10 +259,10 @@ const Settings = () => {
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button variant="secondary" onClick={handleReset}>
+                <Button variant="secondary" onClick={handleReset} className="rounded-full">
                   Discard
                 </Button>
-                <Button onClick={handleSave}>
+                <Button variant="dark" onClick={handleSave} className="rounded-full">
                   Save Changes
                 </Button>
               </div>
@@ -270,13 +271,14 @@ const Settings = () => {
         )}
 
         {!hasChanges && (
-          <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+          <div className="bg-green-50 rounded-3xl p-6">
             <div className="flex items-center gap-3">
               <span className="text-2xl">✅</span>
-              <p className="text-green-800">All settings are saved and up to date</p>
+              <p className="text-green-800 font-medium">All settings are saved and up to date</p>
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

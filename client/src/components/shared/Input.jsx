@@ -34,9 +34,9 @@ const Input = ({
         aria-label={ariaLabel || label}
         aria-invalid={error ? 'true' : 'false'}
         aria-describedby={error ? `${inputId}-error` : undefined}
-        className={`w-full px-4 py-2 border rounded-lg focus-visible-ring ${
-          error ? 'border-red-500' : 'border-gray-300'
-        } disabled:bg-gray-100 disabled:cursor-not-allowed`}
+        className={`w-full px-4 py-3 border-2 rounded-2xl focus-visible-ring ${
+          error ? 'border-red-500' : 'border-gray-200'
+        } disabled:bg-gray-100 disabled:cursor-not-allowed bg-gray-50 focus:bg-white transition-colors`}
       />
       {error && (
         <p id={`${inputId}-error`} className="mt-1 text-sm text-red-600" role="alert">

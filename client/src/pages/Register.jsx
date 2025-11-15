@@ -45,12 +45,13 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-neutral-100 flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
-        <Card title="Create Your Account">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="bg-white rounded-3xl shadow-xl p-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Create Your Account</h2>
+          <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
-              <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm" role="alert">
+              <div className="bg-red-50 text-red-600 p-4 rounded-2xl text-sm" role="alert">
                 {error}
               </div>
             )}
@@ -87,18 +88,18 @@ const Register = () => {
               required
             />
 
-            <Button type="submit" disabled={loading} className="w-full">
+            <Button type="submit" disabled={loading} variant="dark" className="w-full rounded-full">
               {loading ? 'Creating account...' : 'Sign Up'}
             </Button>
 
-            <p className="text-center text-sm text-gray-600">
+            <p className="text-center text-sm text-gray-600 pt-2">
               Already have an account?{' '}
-              <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+              <Link to="/login" className="text-gray-900 hover:text-gray-700 font-semibold">
                 Login
               </Link>
             </p>
           </form>
-        </Card>
+        </div>
       </div>
     </div>
   );
