@@ -20,39 +20,38 @@ const Header = () => {
   `;
 
   return (
-    <header className="bg-white/80 backdrop-blur-sm sticky top-0 z-40">
+    <header className="bg-slate-900/95 backdrop-blur-sm sticky top-0 z-40 border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">DX</span>
+        <div className="flex justify-between items-center h-16">
+          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
+              <span className="text-slate-900 font-bold text-sm">DX</span>
             </div>
+            <span className="text-white font-bold text-lg">divergeX</span>
           </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
             {isAuthenticated ? (
               <>
-                <Link to="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">
+                <Link to="/dashboard" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
                   Dashboard
                 </Link>
-                <Link to="/communication" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">
+                <Link to="/communication" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
                   Communication
                 </Link>
-                <Link to="/learning" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">
+                <Link to="/learning" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
                   Learning
                 </Link>
-                <Link to="/planning" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">
+                <Link to="/planning" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
                   Planning
                 </Link>
               </>
             ) : (
               <>
-                <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">about</a>
-                <a href="#platform" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">platform</a>
-                <a href="#team" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">team</a>
-                <a href="#articles" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">articles</a>
-                <a href="#docs" className="text-gray-700 hover:text-gray-900 font-medium text-sm transition-colors">docs</a>
+                <a href="#features" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">Features</a>
+                <a href="#pricing" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">Pricing</a>
+                <a href="#about" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">About</a>
               </>
             )}
           </nav>
@@ -61,11 +60,11 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-3">
             {isAuthenticated ? (
               <>
-                <Link to="/settings" className="text-gray-600 hover:text-gray-900 p-2 rounded-lg transition-colors" aria-label="Settings">
+                <Link to="/settings" className="text-slate-400 hover:text-white p-2 rounded-lg transition-colors" aria-label="Settings">
                   <span className="text-xl">⚙️</span>
                 </Link>
-                <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full">
-                  <span className="text-sm font-medium text-gray-700">{user?.username}</span>
+                <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full">
+                  <span className="text-sm font-medium text-slate-200">{user?.username}</span>
                 </div>
                 <Button variant="outline" size="sm" onClick={logout}>
                   Logout
@@ -74,10 +73,10 @@ const Header = () => {
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="ghost" size="sm">Login</Button>
+                  <Button variant="ghost" size="sm">Log In</Button>
                 </Link>
                 <Link to="/register">
-                  <Button variant="dark" size="sm">Get Started</Button>
+                  <Button variant="primary" size="sm" className="rounded-lg">Sign Up</Button>
                 </Link>
               </>
             )}

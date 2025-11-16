@@ -17,10 +17,10 @@ const Input = ({
       {label && (
         <label 
           htmlFor={inputId}
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-slate-300 mb-2"
         >
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className="text-red-400 ml-1">*</span>}
         </label>
       )}
       <input
@@ -34,9 +34,9 @@ const Input = ({
         aria-label={ariaLabel || label}
         aria-invalid={error ? 'true' : 'false'}
         aria-describedby={error ? `${inputId}-error` : undefined}
-        className={`w-full px-4 py-3 border-2 rounded-2xl focus-visible-ring ${
-          error ? 'border-red-500' : 'border-gray-200'
-        } disabled:bg-gray-100 disabled:cursor-not-allowed bg-gray-50 focus:bg-white transition-colors`}
+        className={`w-full px-4 py-3 border-2 rounded-xl focus-visible-ring ${
+          error ? 'border-red-500' : 'border-slate-600'
+        } disabled:bg-slate-900 disabled:cursor-not-allowed bg-slate-900 text-white focus:border-cyan-500 transition-colors`}
       />
       {error && (
         <p id={`${inputId}-error`} className="mt-1 text-sm text-red-600" role="alert">

@@ -6,155 +6,178 @@ const Home = () => {
   const { isAuthenticated } = useAuthStore();
 
   return (
-    <div className="min-h-screen bg-neutral-100">
+    <div className="min-h-screen bg-slate-900">
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-24">
-        <div className="bg-white rounded-[40px] shadow-xl overflow-hidden">
-          {/* Main Content */}
-          <div className="px-8 sm:px-16 lg:px-24 pt-20 pb-16 text-center">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
-              Manage Your<br />Funds Effortlessly
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Text Content */}
+          <div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              Clarity in<br />
+              Communication.<br />
+              Simplicity in<br />
+              Action.
             </h1>
             
-            <p className="text-lg sm:text-xl text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Spaces are like personal buckets in your app. Give them names and visuals to make them yours, and set aside cash for anything you need
+            <p className="text-lg text-slate-400 mb-10 max-w-lg leading-relaxed">
+              Empowering neurodivergent individuals by providing intuitive digital tools designed for your unique strengths.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-              {!isAuthenticated ? (
-                <Link to="/register">
-                  <Button variant="dark" size="lg" className="rounded-full px-8 min-w-[160px]">
-                    Apply Now
-                  </Button>
-                </Link>
-              ) : (
-                <Link to="/dashboard">
-                  <Button variant="dark" size="lg" className="rounded-full px-8 min-w-[160px]">
-                    Go to Dashboard
-                  </Button>
-                </Link>
-              )}
-            </div>
-            
-            <p className="text-sm text-gray-500">
-              Master your money with award-winning banking on your phone.
-            </p>
+            {!isAuthenticated ? (
+              <Link to="/register">
+                <Button variant="primary" size="lg" className="rounded-lg px-8">
+                  Create Your Account
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/dashboard">
+                <Button variant="primary" size="lg" className="rounded-lg px-8">
+                  Go to Dashboard
+                </Button>
+              </Link>
+            )}
           </div>
 
-          {/* Features Section */}
-          <div className="px-8 sm:px-16 lg:px-24 pb-20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left: Image */}
-              <div className="relative">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-[32px] overflow-hidden aspect-[4/3] flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl mx-auto mb-4 flex items-center justify-center shadow-lg">
-                      <span className="text-6xl">💬</span>
-                    </div>
-                    <p className="text-gray-600 font-medium">Communication Tools</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Features List */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 bg-gray-50 rounded-3xl p-6 hover:bg-gray-100 transition-colors">
-                  <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                    </svg>
-                  </div>
-                  <span className="text-lg font-medium text-gray-700">Instant alerts</span>
-                </div>
-
-                <div className="flex items-center gap-4 bg-gray-50 rounded-3xl p-6 hover:bg-gray-100 transition-colors">
-                  <div className="w-12 h-12 bg-lime-400 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <span className="text-lg font-medium text-gray-700">Bills management</span>
-                </div>
-
-                <div className="flex items-center gap-4 bg-gray-50 rounded-3xl p-6 hover:bg-gray-100 transition-colors">
-                  <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                    </svg>
-                  </div>
-                  <span className="text-lg font-medium text-gray-700">Virtual cards</span>
-                </div>
-
-                {/* Money Card */}
-                <div className="relative mt-8">
-                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 text-white shadow-2xl">
-                    <p className="text-sm text-gray-400 mb-2">Money in</p>
-                    <p className="text-4xl font-bold mb-4">$ 5,129.86</p>
-                    <div className="inline-block bg-lime-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-4">
-                      +2.51%
-                    </div>
-                    <p className="text-xs text-gray-400">Receive $ 1,990 this month</p>
-                  </div>
-                  
-                  {/* Decorative cubes */}
-                  <div className="absolute -bottom-4 -right-4 flex gap-2">
-                    <div className="w-12 h-12 bg-gray-300 rounded-lg transform rotate-12"></div>
-                    <div className="w-12 h-12 bg-gray-200 rounded-lg transform -rotate-6"></div>
-                    <div className="w-12 h-12 bg-lime-400 rounded-lg"></div>
-                    <div className="w-12 h-12 bg-gray-300 rounded-lg transform rotate-6"></div>
-                  </div>
-                </div>
+          {/* Right: Illustration/Image Placeholder */}
+          <div className="relative">
+            <div className="bg-gradient-to-br from-cyan-400 to-teal-500 rounded-3xl aspect-square flex items-center justify-center shadow-2xl">
+              <div className="text-center p-8">
+                <div className="text-8xl mb-4">🧠</div>
+                <p className="text-slate-900 font-semibold text-xl">Neurodiversity-Focused</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Additional Features Section */}
-        {isAuthenticated && (
-          <div className="mt-16 grid md:grid-cols-3 gap-6">
-            <Link to="/communication" className="bg-white rounded-3xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-3xl">💬</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Communication</h3>
-              <p className="text-gray-600">Analyze tone and format messages effectively</p>
-            </Link>
-
-            <Link to="/learning" className="bg-white rounded-3xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-3xl">📚</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Learning</h3>
-              <p className="text-gray-600">Simplify complex text and visual summaries</p>
-            </Link>
-
-            <Link to="/planning" className="bg-white rounded-3xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-3xl">📅</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Planning</h3>
-              <p className="text-gray-600">Manage tasks and build timelines</p>
-            </Link>
+      {/* Tools Section */}
+      <div className="bg-slate-800/50 py-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">Tools Tailored for You</h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Explore features designed to support communication, learning, and organization in a way that works for you.
+            </p>
           </div>
-        )}
 
-        {/* CTA Section */}
-        {!isAuthenticated && (
-          <div className="mt-16 bg-white rounded-3xl p-12 text-center shadow-lg">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Ready to get started?
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Communication Tools */}
+            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
+              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Communication Tools</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Tools for clear expression and understanding social cues, making interactions more intuitive.
+              </p>
+            </div>
+
+            {/* Learning Assistance */}
+            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
+              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Learning Assistance</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Explore text that support different learning styles and help you maintain focus and clarity.
+              </p>
+            </div>
+
+            {/* Planning & Organization */}
+            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
+              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Planning & Organization</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Manage tasks, schedules, and daily routines with tools that reduce executive function.
+              </p>
+            </div>
+
+            {/* Accessibility Features */}
+            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
+              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Accessibility Features</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Customize your interface with adjustable themes, fonts, and sensory profiles for comfort.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      {!isAuthenticated && (
+        <div className="py-20">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Find Your Focus. Start for Free.
             </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Join DivergeX today and experience tools designed with neurodivergent individuals in mind.
+            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+              Join divergeX today and discover a more comfortable way to navigate your digital world.
             </p>
             <Link to="/register">
-              <Button variant="dark" size="lg" className="rounded-full px-8">
-                Create Your Free Account
+              <Button variant="primary" size="lg" className="rounded-lg px-8">
+                Create Your Account
               </Button>
             </Link>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="border-t border-slate-800 py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
+                  <span className="text-slate-900 font-bold text-sm">DX</span>
+                </div>
+                <span className="text-white font-bold">divergeX</span>
+              </div>
+              <p className="text-slate-500 text-sm">© 2024 divergeX. All rights reserved.</p>
+            </div>
+
+            <div>
+              <h4 className="text-white font-semibold mb-4">Product</h4>
+              <ul className="space-y-2">
+                <li><a href="#features" className="text-slate-400 hover:text-white text-sm transition-colors">Features</a></li>
+                <li><a href="#pricing" className="text-slate-400 hover:text-white text-sm transition-colors">Pricing</a></li>
+                <li><a href="#updates" className="text-slate-400 hover:text-white text-sm transition-colors">Updates</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-semibold mb-4">Company</h4>
+              <ul className="space-y-2">
+                <li><a href="#about" className="text-slate-400 hover:text-white text-sm transition-colors">About Us</a></li>
+                <li><a href="#careers" className="text-slate-400 hover:text-white text-sm transition-colors">Careers</a></li>
+                <li><a href="#contact" className="text-slate-400 hover:text-white text-sm transition-colors">Contact</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2">
+                <li><a href="#blog" className="text-slate-400 hover:text-white text-sm transition-colors">Blog</a></li>
+                <li><a href="#help" className="text-slate-400 hover:text-white text-sm transition-colors">Help Center</a></li>
+                <li><a href="#privacy" className="text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

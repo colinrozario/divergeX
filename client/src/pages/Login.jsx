@@ -30,13 +30,13 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-100 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-3xl shadow-xl p-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Login to DivergeX</h2>
+        <div className="bg-slate-800 rounded-3xl shadow-2xl p-8 border border-slate-700">
+          <h2 className="text-3xl font-bold text-white mb-6 text-center">Log In to DivergeX</h2>
           <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
-              <div className="bg-red-50 text-red-600 p-4 rounded-2xl text-sm" role="alert">
+              <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-4 rounded-2xl text-sm" role="alert">
                 {error}
               </div>
             )}
@@ -57,13 +57,13 @@ const Login = () => {
               required
             />
 
-            <Button type="submit" disabled={loading} variant="dark" className="w-full rounded-full">
-              {loading ? 'Logging in...' : 'Login'}
+            <Button type="submit" disabled={loading} variant="primary" className="w-full rounded-lg">
+              {loading ? 'Logging in...' : 'Log In'}
             </Button>
 
-            <p className="text-center text-sm text-gray-600 pt-2">
+            <p className="text-center text-sm text-slate-400 pt-2">
               Don't have an account?{' '}
-              <Link to="/register" className="text-gray-900 hover:text-gray-700 font-semibold">
+              <Link to="/register" className="text-cyan-500 hover:text-cyan-400 font-semibold">
                 Sign up
               </Link>
             </p>

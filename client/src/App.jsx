@@ -27,7 +27,7 @@ const App = () => {
     clear: 'font-clear'
   };
 
-  const themeClass = theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-neutral-100 text-gray-900';
+  const themeClass = theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-slate-900 text-white';
 
   return (
     <Router>
