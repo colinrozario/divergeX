@@ -27,18 +27,20 @@ const App = () => {
     clear: 'font-clear'
   };
 
-  const themeClass = theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-slate-900 text-white';
+  // Theme is now handled by CSS variables, but we keep the class for potential future toggles if needed
+  // or if we want to support light mode later via a class on the body/div
+  const themeClass = theme === 'light' ? 'light' : '';
 
   return (
     <Router>
       <ToastProvider>
-        <div 
-          className={`min-h-screen ${fontFamilyMap[fontFamily]} ${themeClass} ${motionReduced ? 'motion-reduce' : ''}`}
+        <div
+          className={`min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] ${fontFamilyMap[fontFamily]} ${themeClass} ${motionReduced ? 'motion-reduce' : ''}`}
           style={{ fontSize: `${fontSize}%` }}
         >
           <Header />
-          <AccessibilityToolbar />
-          <main className="pb-8">
+          {/* AccessibilityToolbar removed as per user request */}
+          <main className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

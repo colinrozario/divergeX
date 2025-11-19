@@ -1,180 +1,147 @@
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import Button from '../components/shared/Button';
+import { MessageSquare, BookOpen, Zap } from 'lucide-react';
 
 const Home = () => {
   const { isAuthenticated } = useAuthStore();
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="animate-fade-in">
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Text Content */}
-          <div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Clarity in<br />
-              Communication.<br />
-              Simplicity in<br />
-              Action.
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-[100px]" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h1 className="text-5xl lg:text-7xl font-bold tracking-tight mb-8 leading-tight">
+              Think <span className="text-gradient">Differently</span>.<br />
+              Thrive <span className="text-gradient">Effortlessly</span>.
             </h1>
-            
-            <p className="text-lg text-slate-400 mb-10 max-w-lg leading-relaxed">
-              Empowering neurodivergent individuals by providing intuitive digital tools designed for your unique strengths.
+            <p className="text-xl text-[var(--text-secondary)] mb-10 leading-relaxed">
+              An AI-powered workspace designed for neurodivergent minds.
+              Simplify communication, enhance learning, and master planning with tools that adapt to you.
             </p>
-            
-            {!isAuthenticated ? (
-              <Link to="/register">
-                <Button variant="primary" size="lg" className="rounded-lg px-8">
-                  Create Your Account
-                </Button>
-              </Link>
-            ) : (
-              <Link to="/dashboard">
-                <Button variant="primary" size="lg" className="rounded-lg px-8">
-                  Go to Dashboard
-                </Button>
-              </Link>
-            )}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              {isAuthenticated ? (
+                <Link to="/dashboard">
+                  <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-xl shadow-blue-500/20">
+                    Go to Dashboard
+                  </Button>
+                </Link>
+              ) : (
+                <>
+                  <Link to="/register">
+                    <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-xl shadow-blue-500/20">
+                      Get Started Free
+                    </Button>
+                  </Link>
+                  <a href="#features">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                      Explore Features
+                    </Button>
+                  </a>
+                </>
+              )}
+            </div>
           </div>
 
-          {/* Right: Illustration/Image Placeholder */}
-          <div className="relative">
-            <div className="bg-gradient-to-br from-cyan-400 to-teal-500 rounded-3xl aspect-square flex items-center justify-center shadow-2xl">
-              <div className="text-center p-8">
-                <div className="text-8xl mb-4">🧠</div>
-                <p className="text-slate-900 font-semibold text-xl">Neurodiversity-Focused</p>
-              </div>
+          {/* Visual Representation */}
+          <div className="relative max-w-5xl mx-auto mt-12 rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border border-[var(--border-subtle)] group">
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-transparent to-transparent z-10" />
+            <img
+              src="/uploaded_image_1763538245251.jpg"
+              alt="Empowering neurodiversity through collaboration"
+              className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-8 z-20 text-center">
+              <p className="text-[var(--text-secondary)] text-sm font-medium tracking-widest uppercase opacity-80">Unlock Your Potential. Empower Their Voice.</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Tools Section */}
-      <div className="bg-slate-800/50 py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Features Grid */}
+      <section id="features" className="py-24 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Tools Tailored for You</h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Explore features designed to support communication, learning, and organization in a way that works for you.
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Tools that adapt to your mind</h2>
+            <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
+              Our suite of tools is built to reduce cognitive load and enhance your natural strengths.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Communication Tools */}
-            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
-              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="glass-panel p-8 rounded-3xl card-hover">
+              <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 text-blue-500">
+                <MessageSquare className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Communication Tools</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Tools for clear expression and understanding social cues, making interactions more intuitive.
+              <h3 className="text-xl font-bold mb-3">Clear Communication</h3>
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                Analyze tone, simplify complex messages, and practice conversations in a safe environment.
               </p>
             </div>
 
-            {/* Learning Assistance */}
-            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
-              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+            <div className="glass-panel p-8 rounded-3xl card-hover">
+              <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 text-purple-500">
+                <BookOpen className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Learning Assistance</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Explore text that support different learning styles and help you maintain focus and clarity.
+              <h3 className="text-xl font-bold mb-3">Visual Learning</h3>
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                Transform dense text into clear summaries and visual aids to improve retention and understanding.
               </p>
             </div>
 
-            {/* Planning & Organization */}
-            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
-              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
+            <div className="glass-panel p-8 rounded-3xl card-hover">
+              <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 text-emerald-500">
+                <Zap className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Planning & Organization</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Manage tasks, schedules, and daily routines with tools that reduce executive function.
-              </p>
-            </div>
-
-            {/* Accessibility Features */}
-            <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500 transition-colors">
-              <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Accessibility Features</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Customize your interface with adjustable themes, fonts, and sensory profiles for comfort.
+              <h3 className="text-xl font-bold mb-3">Energy-Aware Planning</h3>
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                Manage tasks based on your energy levels, not just deadlines. Prevent burnout before it happens.
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* CTA Section */}
-      {!isAuthenticated && (
-        <div className="py-20">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Find Your Focus. Start for Free.
-            </h2>
-            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
-              Join divergeX today and discover a more comfortable way to navigate your digital world.
-            </p>
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-secondary)] to-[var(--bg-primary)]" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-8">Ready to unlock your potential?</h2>
+          <p className="text-xl text-[var(--text-secondary)] mb-10">
+            Join thousands of users who are thriving with DivergeX.
+          </p>
+          {!isAuthenticated && (
             <Link to="/register">
-              <Button variant="primary" size="lg" className="rounded-lg px-8">
-                Create Your Account
+              <Button variant="primary" size="lg" className="shadow-xl shadow-blue-500/20 px-12">
+                Start Your Journey
               </Button>
             </Link>
-          </div>
+          )}
         </div>
-      )}
+      </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800 py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
-                  <span className="text-slate-900 font-bold text-sm">DX</span>
-                </div>
-                <span className="text-white font-bold">divergeX</span>
-              </div>
-              <p className="text-slate-500 text-sm">© 2024 divergeX. All rights reserved.</p>
+      <footer className="py-12 border-t border-[var(--border-subtle)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-[10px]">DX</span>
             </div>
-
-            <div>
-              <h4 className="text-white font-semibold mb-4">Product</h4>
-              <ul className="space-y-2">
-                <li><a href="#features" className="text-slate-400 hover:text-white text-sm transition-colors">Features</a></li>
-                <li><a href="#pricing" className="text-slate-400 hover:text-white text-sm transition-colors">Pricing</a></li>
-                <li><a href="#updates" className="text-slate-400 hover:text-white text-sm transition-colors">Updates</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-white font-semibold mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li><a href="#about" className="text-slate-400 hover:text-white text-sm transition-colors">About Us</a></li>
-                <li><a href="#careers" className="text-slate-400 hover:text-white text-sm transition-colors">Careers</a></li>
-                <li><a href="#contact" className="text-slate-400 hover:text-white text-sm transition-colors">Contact</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-white font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2">
-                <li><a href="#blog" className="text-slate-400 hover:text-white text-sm transition-colors">Blog</a></li>
-                <li><a href="#help" className="text-slate-400 hover:text-white text-sm transition-colors">Help Center</a></li>
-                <li><a href="#privacy" className="text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a></li>
-              </ul>
-            </div>
+            <span className="font-bold text-[var(--text-primary)]">divergeX</span>
+          </div>
+          <div className="text-[var(--text-secondary)] text-sm">
+            © 2025 DivergeX. All rights reserved.
+          </div>
+          <div className="flex gap-6">
+            <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Privacy</a>
+            <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Terms</a>
+            <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Contact</a>
           </div>
         </div>
       </footer>
@@ -183,4 +150,3 @@ const Home = () => {
 };
 
 export default Home;
-

@@ -1,74 +1,111 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
+import { useAccessibilityStore } from '../../store/accessibilityStore';
 import Button from '../shared/Button';
 
 const Header = () => {
   const { user, isAuthenticated, logout } = useAuthStore();
+  const { theme, setTheme } = useAccessibilityStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   const isActive = (path) => location.pathname === path;
-  
+
   const navLinkClass = (path) => `
-    px-3 py-2 rounded-lg transition-colors
-    ${isActive(path) 
-      ? 'bg-blue-100 text-blue-700 font-medium' 
-      : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600'
+    relative px-3 py-2 text-sm font-medium transition-colors duration-200
+    ${isActive(path)
+      ? 'text-[var(--text-primary)]'
+      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
     }
-    focus-visible-ring
   `;
 
+  const ActiveIndicator = () => (
+    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--accent-primary)] rounded-full shadow-[0_0_8px_var(--accent-glow)]" />
+  );
+
   return (
-    <header className="bg-slate-900/95 backdrop-blur-sm sticky top-0 z-40 border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
-              <span className="text-slate-900 font-bold text-sm">DX</span>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-3' : 'py-5'
+        }`}
+    >
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${scrolled ? 'mx-4' : ''
+        }`}>
+        <div className={`glass-panel rounded-2xl px-6 flex justify-between items-center h-16 shadow-lg shadow-black/5 ${scrolled ? 'bg-[var(--glass-bg)]/90' : 'bg-[var(--glass-bg)]'
+          }`}>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-9 h-9 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
+              <span className="text-white font-bold text-sm">DX</span>
             </div>
-            <span className="text-white font-bold text-lg">divergeX</span>
+            <span className="text-[var(--text-primary)] font-bold text-lg tracking-tight">divergeX</span>
           </Link>
-          
+
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center space-x-1" aria-label="Main navigation">
             {isAuthenticated ? (
               <>
-                <Link to="/dashboard" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
+                <Link to="/dashboard" className={navLinkClass('/dashboard')}>
                   Dashboard
+                  {isActive('/dashboard') && <ActiveIndicator />}
                 </Link>
-                <Link to="/communication" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
+                <Link to="/communication" className={navLinkClass('/communication')}>
                   Communication
+                  {isActive('/communication') && <ActiveIndicator />}
                 </Link>
-                <Link to="/learning" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
+                <Link to="/learning" className={navLinkClass('/learning')}>
                   Learning
+                  {isActive('/learning') && <ActiveIndicator />}
                 </Link>
-                <Link to="/planning" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
+                <Link to="/planning" className={navLinkClass('/planning')}>
                   Planning
+                  {isActive('/planning') && <ActiveIndicator />}
                 </Link>
               </>
             ) : (
               <>
-                <a href="#features" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">Features</a>
-                <a href="#pricing" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">Pricing</a>
-                <a href="#about" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">About</a>
+                <a href="#features" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-sm font-medium transition-colors">Features</a>
+                <a href="#pricing" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-sm font-medium transition-colors">Pricing</a>
+                <a href="#about" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-sm font-medium transition-colors">About</a>
               </>
             )}
           </nav>
-          
+
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+
             {isAuthenticated ? (
               <>
-                <Link to="/settings" className="text-slate-400 hover:text-white p-2 rounded-lg transition-colors" aria-label="Settings">
+                <Link to="/settings" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] p-2 rounded-lg transition-colors hover:bg-[var(--bg-tertiary)]" aria-label="Settings">
                   <span className="text-xl">⚙️</span>
                 </Link>
-                <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-full">
-                  <span className="text-sm font-medium text-slate-200">{user?.username}</span>
+                <div className="flex items-center gap-3 pl-4 border-l border-[var(--border-subtle)]">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white">
+                    {user?.username?.charAt(0).toUpperCase()}
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={logout} className="text-xs">
+                    Logout
+                  </Button>
                 </div>
-                <Button variant="outline" size="sm" onClick={logout}>
-                  Logout
-                </Button>
               </>
             ) : (
               <>
@@ -76,7 +113,7 @@ const Header = () => {
                   <Button variant="ghost" size="sm">Log In</Button>
                 </Link>
                 <Link to="/register">
-                  <Button variant="primary" size="sm" className="rounded-lg">Sign Up</Button>
+                  <Button variant="primary" size="sm" className="shadow-lg shadow-blue-500/25">Sign Up</Button>
                 </Link>
               </>
             )}
@@ -84,7 +121,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 focus-visible-ring"
+            className="md:hidden p-2 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-primary)] transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
@@ -101,65 +138,60 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="md:hidden mt-2 glass-panel rounded-2xl p-4 animate-fade-in">
             {isAuthenticated ? (
               <>
                 <nav className="space-y-1 mb-4">
-                  <Link 
-                    to="/dashboard" 
-                    className={`block ${navLinkClass('/dashboard')}`}
+                  <Link
+                    to="/dashboard"
+                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-2" aria-hidden="true">📊</span>
-                    Dashboard
+                    <span className="mr-3">📊</span> Dashboard
                   </Link>
-                  <Link 
-                    to="/communication" 
-                    className={`block ${navLinkClass('/communication')}`}
+                  <Link
+                    to="/communication"
+                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-2" aria-hidden="true">💬</span>
-                    Communication
+                    <span className="mr-3">💬</span> Communication
                   </Link>
-                  <Link 
-                    to="/learning" 
-                    className={`block ${navLinkClass('/learning')}`}
+                  <Link
+                    to="/learning"
+                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-2" aria-hidden="true">📚</span>
-                    Learning
+                    <span className="mr-3">📚</span> Learning
                   </Link>
-                  <Link 
-                    to="/planning" 
-                    className={`block ${navLinkClass('/planning')}`}
+                  <Link
+                    to="/planning"
+                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-2" aria-hidden="true">📅</span>
-                    Planning
+                    <span className="mr-3">📅</span> Planning
                   </Link>
-                  <Link 
-                    to="/settings" 
-                    className={`block ${navLinkClass('/settings')}`}
+                  <Link
+                    to="/settings"
+                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-2" aria-hidden="true">⚙️</span>
-                    Settings
+                    <span className="mr-3">⚙️</span> Settings
                   </Link>
                 </nav>
-                <div className="pt-4 border-t border-gray-200 flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Logged in as <strong>{user?.username}</strong></span>
+                <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between px-2">
+                  <span className="text-sm text-[var(--text-muted)]">Logged in as <strong className="text-[var(--text-primary)]">{user?.username}</strong></span>
                   <Button variant="outline" size="sm" onClick={logout}>
                     Logout
                   </Button>
                 </div>
               </>
             ) : (
-              <div className="flex gap-2">
-                <Link to="/login" className="flex-1">
-                  <Button variant="outline" size="md" className="w-full">Login</Button>
+              <div className="flex flex-col gap-3">
+                <Link to="/login">
+                  <Button variant="ghost" size="md" className="w-full justify-center">Login</Button>
                 </Link>
-                <Link to="/register" className="flex-1">
-                  <Button variant="primary" size="md" className="w-full">Sign Up</Button>
+                <Link to="/register">
+                  <Button variant="primary" size="md" className="w-full justify-center">Sign Up</Button>
                 </Link>
               </div>
             )}
@@ -171,4 +203,3 @@ const Header = () => {
 };
 
 export default Header;
-
