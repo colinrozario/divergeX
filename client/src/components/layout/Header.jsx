@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import { useAccessibilityStore } from '../../store/accessibilityStore';
 import Button from '../shared/Button';
+import { Sun, Moon, Settings, LogOut, Menu, X, LayoutDashboard, MessageSquare, BookOpen, Calendar } from 'lucide-react';
 
 const Header = () => {
   const { user, isAuthenticated, logout } = useAuthStore();
@@ -26,7 +27,7 @@ const Header = () => {
   const isActive = (path) => location.pathname === path;
 
   const navLinkClass = (path) => `
-    relative px-3 py-2 text-sm font-medium transition-colors duration-200
+    relative px-3 py-2 text-base font-semibold transition-colors duration-200
     ${isActive(path)
       ? 'text-[var(--text-primary)]'
       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -50,11 +51,11 @@ const Header = () => {
             <div className="w-9 h-9 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
               <span className="text-white font-bold text-sm">DX</span>
             </div>
-            <span className="text-[var(--text-primary)] font-bold text-lg tracking-tight">divergeX</span>
+            <span className="text-[var(--text-primary)] font-bold text-xl tracking-tight">divergeX</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center space-x-2" aria-label="Main navigation">
             {isAuthenticated ? (
               <>
                 <Link to="/dashboard" className={navLinkClass('/dashboard')}>
@@ -76,9 +77,9 @@ const Header = () => {
               </>
             ) : (
               <>
-                <a href="#features" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-sm font-medium transition-colors">Features</a>
-                <a href="#pricing" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-sm font-medium transition-colors">Pricing</a>
-                <a href="#about" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-sm font-medium transition-colors">About</a>
+                <a href="#features" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-base font-semibold transition-colors">Features</a>
+                <a href="#pricing" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-base font-semibold transition-colors">Pricing</a>
+                <a href="#about" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-4 py-2 text-base font-semibold transition-colors">About</a>
               </>
             )}
           </nav>
@@ -90,20 +91,20 @@ const Header = () => {
               className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
             {isAuthenticated ? (
               <>
                 <Link to="/settings" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] p-2 rounded-lg transition-colors hover:bg-[var(--bg-tertiary)]" aria-label="Settings">
-                  <span className="text-xl">⚙️</span>
+                  <Settings className="w-5 h-5" />
                 </Link>
                 <div className="flex items-center gap-3 pl-4 border-l border-[var(--border-subtle)]">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white">
                     {user?.username?.charAt(0).toUpperCase()}
                   </div>
-                  <Button variant="ghost" size="sm" onClick={logout} className="text-xs">
-                    Logout
+                  <Button variant="ghost" size="sm" onClick={logout} className="text-xs flex items-center gap-2">
+                    <LogOut className="w-3 h-3" /> Logout
                   </Button>
                 </div>
               </>
@@ -126,13 +127,7 @@ const Header = () => {
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -144,44 +139,44 @@ const Header = () => {
                 <nav className="space-y-1 mb-4">
                   <Link
                     to="/dashboard"
-                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                    className="flex items-center px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-3">📊</span> Dashboard
+                    <LayoutDashboard className="w-5 h-5 mr-3" /> Dashboard
                   </Link>
                   <Link
                     to="/communication"
-                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                    className="flex items-center px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-3">💬</span> Communication
+                    <MessageSquare className="w-5 h-5 mr-3" /> Communication
                   </Link>
                   <Link
                     to="/learning"
-                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                    className="flex items-center px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-3">📚</span> Learning
+                    <BookOpen className="w-5 h-5 mr-3" /> Learning
                   </Link>
                   <Link
                     to="/planning"
-                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                    className="flex items-center px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-3">📅</span> Planning
+                    <Calendar className="w-5 h-5 mr-3" /> Planning
                   </Link>
                   <Link
                     to="/settings"
-                    className="block px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                    className="flex items-center px-4 py-3 rounded-xl hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="mr-3">⚙️</span> Settings
+                    <Settings className="w-5 h-5 mr-3" /> Settings
                   </Link>
                 </nav>
                 <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between px-2">
                   <span className="text-sm text-[var(--text-muted)]">Logged in as <strong className="text-[var(--text-primary)]">{user?.username}</strong></span>
-                  <Button variant="outline" size="sm" onClick={logout}>
-                    Logout
+                  <Button variant="outline" size="sm" onClick={logout} className="flex items-center gap-2">
+                    <LogOut className="w-3 h-3" /> Logout
                   </Button>
                 </div>
               </>

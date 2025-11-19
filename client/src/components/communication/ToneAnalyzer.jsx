@@ -62,7 +62,7 @@ const ToneAnalyzer = () => {
   };
 
   return (
-    <Card>
+    <Card className="h-full">
       <div className="space-y-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
@@ -142,8 +142,8 @@ const ToneAnalyzer = () => {
                   Tone: {analysis.tone}
                 </span>
                 <span className={`px-4 py-2 rounded-full text-sm font-medium border-2 flex items-center gap-2 ${analysis.sentiment === 'positive' ? 'bg-green-500/10 text-green-600 border-green-500/20' :
-                    analysis.sentiment === 'negative' ? 'bg-red-500/10 text-red-600 border-red-500/20' :
-                      'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border-[var(--border-default)]'
+                  analysis.sentiment === 'negative' ? 'bg-red-500/10 text-red-600 border-red-500/20' :
+                    'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border-[var(--border-default)]'
                   }`}>
                   {analysis.sentiment === 'positive' ? <Smile className="w-4 h-4" /> : analysis.sentiment === 'negative' ? <Meh className="w-4 h-4" /> : <Meh className="w-4 h-4" />}
                   {analysis.sentiment}

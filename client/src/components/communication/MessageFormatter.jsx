@@ -55,7 +55,7 @@ const MessageFormatter = () => {
   ];
 
   return (
-    <Card>
+    <Card className="h-full">
       <div className="space-y-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
@@ -94,8 +94,8 @@ const MessageFormatter = () => {
                 key={option.value}
                 onClick={() => setTargetTone(option.value)}
                 className={`p-3 rounded-lg border-2 text-left transition-all ${targetTone === option.value
-                    ? 'border-blue-500 bg-blue-500/10'
-                    : 'border-[var(--border-subtle)] hover:border-[var(--border-default)] bg-[var(--bg-secondary)]'
+                  ? 'border-blue-500 bg-blue-500/10'
+                  : 'border-[var(--border-subtle)] hover:border-[var(--border-default)] bg-[var(--bg-secondary)]'
                   }`}
               >
                 <div className="flex items-center gap-2 mb-1">

@@ -1,7 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 
 // The client gets the API key from the environment variable `GEMINI_API_KEY`
-const ai = new GoogleGenAI({});
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export const analyzeTone = async (text, context = '') => {
   const prompt = `Analyze the emotional tone and social context of this message. Provide a neurodivergent-friendly interpretation.
@@ -25,13 +25,13 @@ Return ONLY valid JSON, no other text.`;
       contents: prompt
     });
     const responseText = response.text;
-    
+
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    
+
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
     }
-    
+
     return {
       tone: 'neutral',
       sentiment: 'neutral',
@@ -72,13 +72,13 @@ Return ONLY valid JSON, no other text.`;
       contents: prompt
     });
     const responseText = response.text;
-    
+
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    
+
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
     }
-    
+
     return {
       formattedMessage: text,
       changes: [],
@@ -119,13 +119,13 @@ Return ONLY valid JSON, no other text.`;
       contents: prompt
     });
     const responseText = response.text;
-    
+
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    
+
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
     }
-    
+
     return {
       response: 'I understand. Could you tell me more?',
       feedback: 'Good communication',
@@ -165,9 +165,9 @@ Return ONLY valid JSON, no other text.`;
       contents: prompt
     });
     const responseText = response.text;
-    
+
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    
+
     if (jsonMatch) {
       const parsed = JSON.parse(jsonMatch[0]);
       // Ensure readingLevel is a number
@@ -176,7 +176,7 @@ Return ONLY valid JSON, no other text.`;
       }
       return parsed;
     }
-    
+
     return {
       simplifiedText: text,
       chunks: [text],
@@ -215,13 +215,13 @@ Return ONLY valid JSON, no other text.`;
       contents: prompt
     });
     const responseText = response.text;
-    
+
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    
+
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
     }
-    
+
     return {
       outline: [],
       mindMap: { nodes: [], edges: [] },

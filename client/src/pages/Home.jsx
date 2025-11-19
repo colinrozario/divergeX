@@ -53,7 +53,7 @@ const Home = () => {
           <div className="relative max-w-5xl mx-auto mt-12 rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border border-[var(--border-subtle)] group">
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-transparent to-transparent z-10" />
             <img
-              src="/uploaded_image_1763538245251.jpg"
+              src="/dashboard_divergeX.jpg"
               alt="Empowering neurodiversity through collaboration"
               className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
             />
